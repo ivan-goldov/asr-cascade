@@ -1,0 +1,54 @@
+{
+    "encoder": [
+        {
+            "name": "coalescence",
+            "window_size": 15,
+            "stride": 7
+        },
+        {
+            "name": "positional_encoding",
+            "embedding_dim": 64,
+            "concat": true,
+            "features_first": true
+        },
+        {
+            "name": "transformer_encoder",
+            "model_definition": {
+                "num_layers": 16,
+                "d_model": 1024,
+                "num_heads": 16,
+                "dim_feedforward": 2048,
+                "dropout": 0.15,
+                "activation": "gelu",
+                "normalize_before": true,
+                "final_norm": true
+            }
+        }
+    ],
+    "decoder": [
+        {
+            "name": "embedding",
+            "embedding_dim": 1024
+        },
+        {
+            "name": "positional_encoding",
+            "embedding_dim": 1024,
+            "concat": false,
+            "features_first": false,
+            "max_len": 5000
+        },
+        {
+            "name": "transformer_decoder",
+            "model_definition": {
+                "num_layers": 6,
+                "d_model": 1024,
+                "num_heads": 16,
+                "dim_feedforward": 2048,
+                "dropout": 0.15,
+                "activation": "gelu",
+                "normalize_before": true,
+                "final_norm": false
+            }
+        }
+    ]
+}
